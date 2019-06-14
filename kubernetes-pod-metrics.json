@@ -109,7 +109,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "increase(kube_pod_container_status_restarts_total{namespace=\"$namespace\",pod_template_hash=\"\",pod=\"$Pod\", container=\"$container\"}[1h])  ",
+          "expr": "increase(kube_pod_container_status_restarts_total{namespace=\"$namespace\",pod_template_hash=\"\",pod=\"$Pod\", container_name=\"$container\"}[1h])  ",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ container }}",
@@ -218,7 +218,7 @@
       "tableColumn": "__name__",
       "targets": [
         {
-          "expr": "kube_pod_container_status_restarts_total{pod_template_hash=\"\",pod=\"$Pod\", container=\"$container\"} ",
+          "expr": "kube_pod_container_status_restarts_total{pod_template_hash=\"\",pod=\"$Pod\", container_name=\"$container\"} ",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -299,7 +299,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "kube_pod_container_status_running{pod_template_hash=\"\",namespace=\"$namespace\", pod=\"$Pod\",container=\"$container\"}",
+          "expr": "kube_pod_container_status_running{pod_template_hash=\"\",namespace=\"$namespace\", pod=\"$Pod\",container_name=\"$container\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -397,7 +397,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container=\"$container\",pod_template_hash=\"\",reason=\"Error\"})",
+              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container_name=\"$container\",pod_template_hash=\"\",reason=\"Error\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -480,7 +480,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container=\"$container\",pod_template_hash=\"\",reason=\"OOMKilled\"})",
+              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container_name=\"$container\",pod_template_hash=\"\",reason=\"OOMKilled\"})",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A",
@@ -561,7 +561,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container=\"$container\",pod_template_hash=\"\",reason=\"ContainerCannotRun\"})",
+              "expr": "sum(kube_pod_container_status_last_terminated_reason{namespace=\"$namespace\",container_name=\"$container\",pod_template_hash=\"\",reason=\"ContainerCannotRun\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -642,7 +642,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "kube_pod_container_status_last_terminated_reason{reason!=\"\", namespace=\"$namespace\",container=\"$container\",pod_template_hash=\"\",pod=\"$Pod\"} > 0",
+              "expr": "kube_pod_container_status_last_terminated_reason{reason!=\"\", namespace=\"$namespace\",container_name=\"$container\",pod_template_hash=\"\",pod=\"$Pod\"} > 0",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "{{ reason }}",
@@ -2178,7 +2178,7 @@
           "step": 3600
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
+          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "request",
@@ -2397,7 +2397,7 @@
           "step": 3600
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
+          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "request",
@@ -2616,7 +2616,7 @@
           "step": 3600
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
+          "expr": "sum(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container) / count(kube_pod_container_resource_requests_memory_bytes{container_name=\"$container\", namespace=\"$namespace\"}) by (namespace,container)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "request",
