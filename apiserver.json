@@ -132,28 +132,28 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(apiserver_request_total{job=\"apiserver\", instance=~\"$instance\",code=~\"2..\"}[5m]))",
+                     "expr": "sum(rate(apiserver_request_count{job=\"apiserver\", instance=~\"$instance\",code=~\"2..\"}[5m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "2xx",
                      "refId": "A"
                   },
                   {
-                     "expr": "sum(rate(apiserver_request_total{job=\"apiserver\", instance=~\"$instance\",code=~\"3..\"}[5m]))",
+                     "expr": "sum(rate(apiserver_request_count{job=\"apiserver\", instance=~\"$instance\",code=~\"3..\"}[5m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "3xx",
                      "refId": "B"
                   },
                   {
-                     "expr": "sum(rate(apiserver_request_total{job=\"apiserver\", instance=~\"$instance\",code=~\"4..\"}[5m]))",
+                     "expr": "sum(rate(apiserver_request_count{job=\"apiserver\", instance=~\"$instance\",code=~\"4..\"}[5m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "4xx",
                      "refId": "C"
                   },
                   {
-                     "expr": "sum(rate(apiserver_request_total{job=\"apiserver\", instance=~\"$instance\",code=~\"5..\"}[5m]))",
+                     "expr": "sum(rate(apiserver_request_count{job=\"apiserver\", instance=~\"$instance\",code=~\"5..\"}[5m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "5xx",
@@ -1080,7 +1080,7 @@
             "multi": false,
             "name": "instance",
             "options": [ ],
-            "query": "label_values(apiserver_request_total{job=\"apiserver\"}, instance)",
+            "query": "label_values(apiserver_request_count{job=\"apiserver\"}, instance)",
             "refresh": 2,
             "regex": "",
             "sort": 0,
