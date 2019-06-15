@@ -232,7 +232,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(apiserver_request_duration_seconds_bucket{job=\"apiserver\", instance=~\"$instance\"}[5m])) by (verb, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(apiserver_request_latencies_bucket{job=\"apiserver\", instance=~\"$instance\"}[5m])) by (verb, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{verb}}",
@@ -574,7 +574,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "etcd_helper_cache_entry_total{job=\"apiserver\", instance=~\"$instance\"}",
+                     "expr": "etcd_helper_cache_entry_count{job=\"apiserver\", instance=~\"$instance\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -653,14 +653,14 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(etcd_helper_cache_hit_total{job=\"apiserver\",instance=~\"$instance\"}[5m])) by (intance)",
+                     "expr": "sum(rate(etcd_helper_cache_hit_count{job=\"apiserver\",instance=~\"$instance\"}[5m])) by (intance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} hit",
                      "refId": "A"
                   },
                   {
-                     "expr": "sum(rate(etcd_helper_cache_miss_total{job=\"apiserver\",instance=~\"$instance\"}[5m])) by (instance)",
+                     "expr": "sum(rate(etcd_helper_cache_miss_count{job=\"apiserver\",instance=~\"$instance\"}[5m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} miss",
