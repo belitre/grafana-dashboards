@@ -7,7 +7,7 @@
             "builtIn": 1,
             "datasource": "$datasource",
             "enable": true,
-            "expr": "time() == BOOL timestamp(rate(kube_pod_container_status_restarts_total{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\"}[2m]) > 0)",
+            "expr": "time() == BOOL timestamp(rate(kube_pod_container_status_restarts_total{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\"}[2m]) > 0)",
             "hide": false,
             "iconColor": "rgba(215, 44, 44, 1)",
             "name": "Restarts",
@@ -67,28 +67,28 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by(container) (container_memory_usage_bytes{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
+                     "expr": "sum by(container) (container_memory_usage_bytes{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Current: {{ container }}",
                      "refId": "A"
                   },
                   {
-                     "expr": "sum by(container) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"memory\", pod=\"$pod\", container_name=~\"$container\"})",
+                     "expr": "sum by(container) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"memory\", pod_name=\"$pod\", container_name=~\"$container\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Requested: {{ container }}",
                      "refId": "B"
                   },
                   {
-                     "expr": "sum by(container) (kube_pod_container_resource_limits{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"memory\", pod=\"$pod\", container_name=~\"$container\"})",
+                     "expr": "sum by(container) (kube_pod_container_resource_limits{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"memory\", pod_name=\"$pod\", container_name=~\"$container\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Limit: {{ container }}",
                      "refId": "C"
                   },
                   {
-                     "expr": "sum by(container) (container_memory_cache{job=\"cadvisor\", namespace=\"$namespace\", pod=~\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
+                     "expr": "sum by(container) (container_memory_cache{job=\"cadvisor\", namespace=\"$namespace\", pod_name=~\"$pod\", container_name=~\"$container\", container_name!=\"POD\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Cache: {{ container }}",
@@ -180,21 +180,21 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum by (container) (irate(container_cpu_usage_seconds_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", image!=\"\", pod=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"}[4m]))",
+                     "expr": "sum by (container) (irate(container_cpu_usage_seconds_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", image!=\"\", pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"POD\"}[4m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Current: {{ container }}",
                      "refId": "A"
                   },
                   {
-                     "expr": "sum by(container) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"cpu\", pod=\"$pod\", container_name=~\"$container\"})",
+                     "expr": "sum by(container) (kube_pod_container_resource_requests{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"cpu\", pod_name=\"$pod\", container_name=~\"$container\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Requested: {{ container }}",
                      "refId": "B"
                   },
                   {
-                     "expr": "sum by(container) (kube_pod_container_resource_limits{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"cpu\", pod=\"$pod\", container_name=~\"$container\"})",
+                     "expr": "sum by(container) (kube_pod_container_resource_limits{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", resource=\"cpu\", pod_name=\"$pod\", container_name=~\"$container\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Limit: {{ container }}",
@@ -286,17 +286,17 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sort_desc(sum by (pod) (irate(container_network_receive_bytes_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\"}[4m])))",
+                     "expr": "sort_desc(sum by (pod) (irate(container_network_receive_bytes_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\"}[4m])))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "RX: {{ pod }}",
+                     "legendFormat": "RX: {{ pod_name }}",
                      "refId": "A"
                   },
                   {
-                     "expr": "sort_desc(sum by (pod) (irate(container_network_transmit_bytes_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\"}[4m])))",
+                     "expr": "sort_desc(sum by (pod) (irate(container_network_transmit_bytes_total{job=\"cadvisor\", cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\"}[4m])))",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "TX: {{ pod }}",
+                     "legendFormat": "TX: {{ pod_name }}",
                      "refId": "B"
                   }
                ],
@@ -385,7 +385,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "max by (container) (kube_pod_container_status_restarts_total{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\", container_name=~\"$container\"})",
+                     "expr": "max by (container) (kube_pod_container_status_restarts_total{job=\"kube-state-metrics\", cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\", container_name=~\"$container\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "Restarts: {{ container }}",
@@ -529,7 +529,7 @@
             "multi": false,
             "name": "container",
             "options": [ ],
-            "query": "label_values(kube_pod_container_info{cluster=\"$cluster\", namespace=\"$namespace\", pod=\"$pod\"}, container)",
+            "query": "label_values(kube_pod_container_info{cluster=\"$cluster\", namespace=\"$namespace\", pod_name=\"$pod\"}, container)",
             "refresh": 2,
             "regex": "",
             "sort": 0,

@@ -299,7 +299,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "kube_pod_container_status_running{pod_template_hash=\"\",namespace=\"$namespace\", pod=\"$Pod\",container_name=\"$container\"}",
+          "expr": "kube_pod_container_status_running{pod_template_hash=\"\",namespace=\"$namespace\", pod_name=\"$Pod\",container_name=\"$container\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
