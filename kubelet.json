@@ -545,7 +545,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(kubelet_runtime_operations_total{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (operation_type, instance)",
+                     "expr": "sum(rate(kubelet_runtime_operations{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (operation_type, instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{operation_type}}",
@@ -624,7 +624,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(kubelet_runtime_operations_errors_total{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, operation_type)",
+                     "expr": "sum(rate(kubelet_runtime_operations_errors{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, operation_type)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{operation_type}}",
@@ -716,7 +716,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_runtime_operations_duration_seconds_bucket{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, operation_type, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_runtime_operations_latency_microseconds_sum{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, operation_type, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{operation_type}}",
@@ -808,14 +808,14 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(kubelet_pod_start_duration_seconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance)",
+                     "expr": "sum(rate(kubelet_pod_start_latency_microseconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} pod",
                      "refId": "A"
                   },
                   {
-                     "expr": "sum(rate(kubelet_pod_worker_duration_seconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance)",
+                     "expr": "sum(rate(kubelet_pod_worker_latency_microseconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} worker",
@@ -894,14 +894,14 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pod_start_duration_seconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pod_start_latency_microseconds_count{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} pod",
                      "refId": "A"
                   },
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pod_worker_duration_seconds_bucket{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pod_worker_latency_microseconds_sum{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} worker",
@@ -1262,7 +1262,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(kubelet_cgroup_manager_duration_seconds_count{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance, operation_type)",
+                     "expr": "sum(rate(kubelet_cgroup_manager_latency_microseconds_count{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance, operation_type)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_type}}",
@@ -1341,7 +1341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_cgroup_manager_duration_seconds_bucket{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance, operation_type, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_cgroup_manager_latency_microseconds_sum{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance, operation_type, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}} {{operation_type}}",
@@ -1434,7 +1434,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "sum(rate(kubelet_pleg_relist_duration_seconds_count{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance)",
+                     "expr": "sum(rate(kubelet_pleg_relist_latency_microseconds_count{job=\"kubelet\", instance=~\"$instance\"}[5m])) by (instance)",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
@@ -1605,7 +1605,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pleg_relist_duration_seconds_bucket{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
+                     "expr": "histogram_quantile(0.99, sum(rate(kubelet_pleg_relist_latency_microseconds_sum{job=\"kubelet\",instance=~\"$instance\"}[5m])) by (instance, le))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{instance}}",
